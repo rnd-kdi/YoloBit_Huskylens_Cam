@@ -1,0 +1,11 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="HUSKYLENS" colour="#8B4513" icon="camera">
+    <label text="Camera" web-class="blockLabelStyle"></label>
+    <block type="huskylens_i2c_init" />
+    <block type="huskylens_update_block" />
+    <block type="huskylens_bounding_box" />
+    <block type="huskylens_update_arrow" />
+    <block type="huskylens_line_tracking" />
+    <block type="huskylens_update_classification" />
+  </category>
+</xml>
