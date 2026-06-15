@@ -21,8 +21,7 @@ Blockly.Blocks['huskylens_i2c_init'] = {
 Blockly.Python['huskylens_i2c_init'] = function (block) {
   Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
   Blockly.Python.definitions_['import_huskylens'] = 'from HuskyLens import HuskyLens';
-  Blockly.Python.definitions_['init_huskylens'] = 'husky = HuskyLens(sda_pin=pin20.pin, scl_pin=pin19.pin)';
-  return '';
+  return 'husky = HuskyLens(sda_pin=pin20.pin, scl_pin=pin19.pin)\n';
 };
 
 // ---------------------------------------------------------------------------
@@ -76,8 +75,7 @@ Blockly.Python['huskylens_update_block'] = function (block) {
   Blockly.Python.definitions_['huskylens_block_var_' + objectId] =
     '_husky_block_' + objectId + ' = {"x": 0, "y": 0, "w": 0, "h": 0}';
   var code = 'husky.set_algorithm(' + algo + ')\n';
-  code += 'global _husky_block_' + objectId + '\n';
-  code += '_husky_block_' + objectId + ' = await husky.get_block(' + objectId + ')\n';
+  code += '_husky_block_' + objectId + ' = husky.get_block(' + objectId + ')\n';
   return code;
 };
 
@@ -147,8 +145,7 @@ Blockly.Python['huskylens_update_arrow'] = function (block) {
   Blockly.Python.definitions_['huskylens_arrow_var'] =
     '_husky_arrow = {"xo": 0, "yo": 0, "xt": 0, "yt": 0}';
   var code = 'husky.set_algorithm(3)\n';
-  code += 'global _husky_arrow\n';
-  code += '_husky_arrow = await husky.get_arrow()\n';
+  code += '_husky_arrow = husky.get_arrow()\n';
   return code;
 };
 
@@ -209,7 +206,6 @@ Blockly.Blocks["huskylens_update_classification"] = {
 Blockly.Python['huskylens_update_classification'] = function (block) {
   Blockly.Python.definitions_['huskylens_classification_var'] = '_husky_cls_id = 0';
   var code = 'husky.set_algorithm(6)\n';
-  code += 'global _husky_cls_id\n';
-  code += '_husky_cls_id = (await husky.get_any_block())["id"]\n';
+  code += '_husky_cls_id = (husky.get_any_block())["id"]\n';
   return code;
 };

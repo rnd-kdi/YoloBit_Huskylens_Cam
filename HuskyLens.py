@@ -121,8 +121,7 @@ class HuskyLens:
         cmd = bytes([self.HEADER1, self.HEADER2, self.ADDRESS, 0x00, self.CMD_REQUEST, 0x30])
         self._send(cmd)
 
-    # async for Blockly await compatibility (I2C ops are blocking ~9ms)
-    async def get_block(self, target_id):
+    def get_block(self, target_id):
         self._fresh_blocks.clear()
         self._parse()
         self._request()
@@ -134,7 +133,7 @@ class HuskyLens:
             return self.last_block.get(target_id, {"x": 0, "y": 0, "w": 0, "h": 0})
         return {"x": 0, "y": 0, "w": 0, "h": 0}
 
-    async def get_any_block(self):
+    def get_any_block(self):
         """Get any detected block (no ID filter). For Object Classification."""
         self._fresh_blocks.clear()
         self._parse()
@@ -147,7 +146,7 @@ class HuskyLens:
             return self.last_block[first_id]
         return {"x": 0, "y": 0, "w": 0, "h": 0, "id": 0}
 
-    async def get_arrow(self):
+    def get_arrow(self):
         self._fresh_arrow = False
         self._parse()
         self._request()
